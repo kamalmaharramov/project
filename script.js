@@ -62,12 +62,10 @@ class TodoService {
      * @param {string} [title] - Todo title. Default is empty string. 
      */
     addTodo(title = '') {
-        if (!this._todos.some(t => !t.title)) {
+         (!this._todos.some(t => !t.title)) 
             this._todos = [...this._todos, new Todo(this._generateId(), title)];
             this._commit();
-        } else {
-            throw new Error('There is empty element in todo list');
-        }
+        
     }
 
     /** 
@@ -213,20 +211,16 @@ class DOMManipulator {
     }
 
     _handleEdit(id, title) {
-        try {
+    
             this._service.editTodo(id, title);
-        } catch (error) {
-            this._showError(error.message);
-        }
+        
     }
 
     _handleAdd() {
-        try {
+        
             this._service.addTodo();
             this._sortDir = true; //sile bilersen 
-        } catch (error) {
-            this._showError(error.message);
-        }
+        
     }
 
     /** 
@@ -250,15 +244,14 @@ class DOMManipulator {
             </svg> 
             
             `;
-        } else {
+        } else{
             this._sortBtn.innerHTML = `<svg width="25" height="15" viewBox="0 0 25 15" fill="none" xmlns="http://www.w3.org/2000/svg"> 
             <rect x="2.5" width="2.5" height="12.5" fill="#C4C4C4"/> 
             <rect x="10" y="3.75" width="2.5" height="7.5" transform="rotate(-90 10 3.75)" fill="#C4C4C4"/> 
             <rect x="10" y="8.75" width="2.5" height="10" transform="rotate(-90 10 8.75)" fill="#C4C4C4"/> 
             <rect x="10" y="13.75" width="2.5" height="15" transform="rotate(-90 10 13.75)" fill="#C4C4C4"/> 
             <path d="M3.75 15L0.502405 10.3125L6.9976 10.3125L3.75 15Z" fill="#C4C4C4"/> 
-            </svg> 
-            `;
+            </svg> `;
         }
     }
 
